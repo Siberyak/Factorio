@@ -16,8 +16,8 @@ namespace lua.reader
     public class DataCache
     {
         private const float defaultRecipeTime = 0.5f;
-        public const string ResultJson = "_result.json";
-        public const string LocaleFilesJson = "_loc.json";
+        public const string ResultJson = "_data\\_result.json";
+        public const string LocaleFilesJson = "_data\\_loc.json";
         
         public static List<Mod> Mods = new List<Mod>();
         public static List<Language> Languages = new List<Language>();

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using lua.reader.Properties;
 using Newtonsoft.Json;
@@ -49,7 +51,7 @@ namespace lua.reader
                 json = json.Substring(json.IndexOf("{"));
                 json = json.Replace(Environment.NewLine, " ");
                 var tmp = JsonConvert.DeserializeObject<Recipe>(json);
-                tmp.Token = recipe;
+                tmp.Token = recipe.Children().First();
                 list.Add(tmp);
             }
 
@@ -136,8 +138,52 @@ namespace lua.reader
         public string Name { get; set; }
 
         public JToken Token { get; set; }
+
+        private List<Ingredient> _i;
+        public List<Ingredient> Ingredients => _i ?? (_i = GetIngredients());
+
+        private List<Ingredient> GetIngredients()
+        {
+            return Token["ingredients"].Select(x => new Ingredient(x)).ToList();
+        }
+
+        public override string ToString()
+        {
+            return $"{Type}: '{Name}'" ?? base.ToString();
+        }
     }
 
     public class Ingredient
-    { }
+    {
+        private readonly JToken _token;
+
+        public Ingredient(JToken token)
+        {
+            _token = token;
+
+            if(token.Type == JTokenType.Object)
+            {
+                dynamic source = token;
+
+                Type = source.type ?? "item";
+                Item = source.name;
+                Amount = source.amount;
+            }
+            else if (token.Type == JTokenType.Array)
+            {
+                Item = token[0].Value<string>();
+                Amount = token[1].Value<double>();
+            }
+
+        }
+
+        public string Type { get; set; }
+        public string Item { get; set; }
+        public object Amount { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Type}: '{Item}', {Amount}";
+        }
+    }
 }
