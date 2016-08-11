@@ -4,8 +4,10 @@ using Newtonsoft.Json.Linq;
 namespace lua.reader
 {
     [JsonObject("item", MemberSerialization = MemberSerialization.OptIn)]
-    public class Item : TypedNamedBase
+    public partial class Item : TypedNamedBase
     {
+        [JsonProperty("flags")]
+        public object Flags { get; set; }
 
         [JsonProperty("order")]
         public string Order { get; set; }

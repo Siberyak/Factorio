@@ -63,6 +63,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graph\DataByKey.cs" />
+    <Compile Include="Graph\Factory.cs" />
+    <Compile Include="Graph\Graph.cs" />
+    <Compile Include="Graph\GraphEdge.cs" />
+    <Compile Include="Graph\GraphExtender.cs" />
+    <Compile Include="Graph\GraphNode.cs" />
+    <Compile Include="Graph\IGraph.cs" />
+    <Compile Include="Graph\IGraphEdge.cs" />
+    <Compile Include="Graph\IGraphNode.cs" />
+    <Compile Include="Graph\IMutable.cs" />
     <Compile Include="Storage\Ammo.cs" />
     <Compile Include="Storage\Base.cs" />
     <Compile Include="DataCache.cs" />
@@ -75,12 +85,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Storage\EdgeBase.cs" />
+    <Compile Include="Storage\Emitter.cs" />
     <Compile Include="Storage\Item.cs" />
     <Compile Include="Storage\ItemGroup.cs" />
     <Compile Include="Storage\ItemSubGroup.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="MemberInfoExtender.cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="Storage\RecipePartEdge.cs" />
+    <Compile Include="Storage\TypedBase.cs" />
     <Compile Include="Storage\TypedNamedBase.cs" />
     <Compile Include="Storage\TypedNamedOrderedBase.cs" />
     <Compile Include="Program.cs" />
@@ -92,7 +106,7 @@
     </Compile>
     <Compile Include="Storage\Recipe.cs" />
     <Compile Include="Storage\RecipeCategory.cs" />
-    <Compile Include="Storage\RecipePart.cs" />
+    <Compile Include="Storage\_generated.cs" />
     <Compile Include="Storage\_Storage.cs" />
     <Compile Include="TypeExtender.cs" />
     <Compile Include="TypeNameExtender.cs" />
@@ -103,12 +117,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="_data\_loc.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="_data\_result.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup />

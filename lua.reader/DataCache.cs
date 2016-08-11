@@ -30,20 +30,28 @@ namespace lua.reader
 
         private static string GetTempModPath()
         {
-            foreach (var directory in Directory.GetDirectories(Path.GetTempPath(), "_Factorio_*"))
-            {
-                try
-                {
-                    Directory.Delete(directory, true);
 
-                }
-                catch (Exception e)
-                {
+            var path = Storage.ModsPath; //Path.Combine(Path.GetTempPath(), "_Factorio_mods");
+
+            string suffix = $"{DateTime.UtcNow.Ticks}";
+
+            if(Directory.Exists(path))
+                Directory.Move(path, $"{path}.{suffix}");
+
+            //foreach (var directory in Directory.GetDirectories(Path.GetTempPath(), "_Factorio_mods"))
+            //{
+            //    try
+            //    {
+            //        Directory.Delete(directory, true);
+
+            //    }
+            //    catch (Exception e)
+            //    {
                     
-                }
-            }
+            //    }
+            //}
 
-            var path = Path.Combine(Path.GetTempPath(), $"_Factorio_{Guid.NewGuid():N}_mods");
+            //var path = Path.Combine(Path.GetTempPath(), "_Factorio_mods");
             Directory.CreateDirectory(path);
             return path;
         }
@@ -142,8 +150,10 @@ namespace lua.reader
                 //var tmp = groups.Select(x => x).ToArray();
 
 
-                SaveJson(result, Storage.ResultJson);
-                SaveJson(JObject.FromObject(LocaleFiles), Storage.LocaleFilesJson);
+                SaveJson(result, Storage.DataJson);
+                SaveJson(JObject.FromObject(LocaleFiles), Storage.LocaleJson);
+                Dictionary<string, Mod> dictionary = Mods.ToDictionary(x => x.Name);
+                SaveJson(JObject.FromObject(dictionary), Storage.ModsJson);
 
                 //foreach (String type in new List<String> { "item", "fluid", "capsule", "module", "ammo", "gun", "armor", "blueprint", "deconstruction-item", "mining-tool", "repair-tool", "tool" })
                 //{

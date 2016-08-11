@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace lua.reader
 {
@@ -153,17 +154,37 @@ namespace lua.reader
         public DependencyType VersionType = DependencyType.EqualTo;
     }
 
+    [JsonObject]
     public class Mod
     {
+        [JsonProperty]
         public string author = "";
+
+        [JsonProperty]
         public List<string> dependencies = new List<string>();
+
+        [JsonProperty]
         public string description = "";
+
+        [JsonProperty]
         public string dir = "";
+
+        [JsonProperty]
         public bool Enabled { get; set; } = true;
+
+        [JsonProperty]
         public string Name = "";
+
+        [JsonIgnore]
         public List<ModDependency> parsedDependencies = new List<ModDependency>();
+
+        [JsonIgnore]
         public Version parsedVersion;
+
+        [JsonProperty]
         public string title = "";
+
+        [JsonProperty]
         public string version = "";
 
         public bool SatisfiesDependency(ModDependency dep)
