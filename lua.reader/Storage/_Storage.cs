@@ -241,6 +241,13 @@ namespace lua.reader
             }
 
             var errors = storage.Edges.Select(x => x.From).Where(x => !(x is Recipe)).ToArray();
+
+            var subgroups = storage.Nodes<ItemSubGroup>().Select(x => x.Name).ToArray();
+
+            var nosubgroup = storage.Nodes<Item>().Where(x => string.IsNullOrEmpty(x.subgroup)).ToArray();
+
+            var nnnn = storage.Nodes<Item>().Select(x => x.Type).Except(subgroups).Distinct().ToArray();
+
             return storage;
         }
 

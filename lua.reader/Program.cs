@@ -16,12 +16,6 @@ namespace lua.reader
         [STAThread]
         private static void Main(string[] args)
         {
-            var flag = false;
-            if(flag)
-                Load();
-            Storage storage = Storage.Load();
-
-            return;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
