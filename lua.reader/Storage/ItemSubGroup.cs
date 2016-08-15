@@ -7,5 +7,14 @@ namespace lua.reader
     {
         [JsonProperty("group")]
         public string Group { get; set; }
+
+        public override void ProcessLinks()
+        {
+            base.ProcessLinks();
+
+            var @group = Storage.FindNode<ItemGroup>(x => x.Name == Group);
+            Storage.Link<ItemSubGroupGroupEdge>(this, @group);
+
+        }
     }
 }

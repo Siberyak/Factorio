@@ -6,6 +6,8 @@ namespace lua.reader
     [JsonObject("item", MemberSerialization = MemberSerialization.OptIn)]
     public partial class Item : TypedNamedBase
     {
+        private string _subgroup;
+
         [JsonProperty("flags")]
         public object Flags { get; set; }
 
@@ -19,18 +21,29 @@ namespace lua.reader
         public string icon { get; set; }
 
         [JsonProperty("subgroup")]
-        public string subgroup { get; set; }
+        public string Subgroup
+        {
+            get { return _subgroup ?? Type; }
+            set { _subgroup = value; }
+        }
 
         [JsonProperty("place_result")]
-        public string place_result { get; set; }
+        public string PlaceResult { get; set; }
 
         [JsonProperty("fuel_value")]
-        public string fuel_value { get; set; }
+        public string FuelValue { get; set; }
 
         [JsonProperty("healing_value")]
-        public double healing_value { get; set; }
+        public double HealingValue { get; set; }
 
 
+        public override void ProcessLinks()
+        {
+            base.ProcessLinks();
+
+            var subGroup = Storage.FindNode<ItemSubGroup>(x => x.Name == Subgroup);
+            Storage.Link<ItemSubGroupEdge>(this, subGroup);
+        }
 
         public override void SetToken(JToken token)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using lua.reader.Graph;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -63,6 +64,11 @@ namespace lua.reader
                     Populate(Result, Math.Max(ResultCount, 1), false);
                 }
             }
+
+            // crafitng categories
+            //RecipeCategory
+            //Storage.Nodes<AssemblingMachine>().Where(x => x.CraftingCategories)
+
         }
 
         private void Populate(JToken token, bool input)

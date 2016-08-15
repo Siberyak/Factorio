@@ -78,7 +78,6 @@
     <Compile Include="Graph\IGraphEdge.cs" />
     <Compile Include="Graph\IGraphNode.cs" />
     <Compile Include="Graph\IMutable.cs" />
-    <Compile Include="Storage\Ammo.cs" />
     <Compile Include="Storage\Base.cs" />
     <Compile Include="DataCache.cs" />
     <Compile Include="Storage\Direction.cs" />
@@ -91,7 +90,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Storage\EdgeBase.cs" />
-    <Compile Include="Storage\Emitter.cs" />
+    <Compile Include="Storage\Entity.cs" />
     <Compile Include="Storage\Item.cs" />
     <Compile Include="Storage\ItemGroup.cs" />
     <Compile Include="Storage\ItemSubGroup.cs" />
