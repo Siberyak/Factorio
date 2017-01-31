@@ -1,19 +1,5 @@
 namespace lua.reader
 {
-    public class ItemSubGroupEdge : EdgeBase
-    {
-        public ItemSubGroupEdge(Storage storage, Item @from, ItemSubGroup to) : base(storage, @from, to)
-        {
-        }
-    }
-
-    public class ItemSubGroupGroupEdge : EdgeBase
-    {
-        public ItemSubGroupGroupEdge(Storage storage, ItemSubGroup @from, ItemGroup to) : base(storage, @from, to)
-        {
-        }
-    }
-
     public class RecipePartEdge : EdgeBase
     {
         public RecipePartEdge(Storage storage, Recipe recipe, Item item) : base(storage, recipe, item)
@@ -27,5 +13,16 @@ namespace lua.reader
         {
             return $"[{GetType().Name}] {From}: {Direction} {Amount} {To}";
         }
+    }
+
+
+    public class RecipeRecipeCategoryEdge : EdgeBase
+    {
+        public RecipeRecipeCategoryEdge(Storage storage, Recipe recipe, RecipeCategory recipeCategory) : base(storage, recipe, recipeCategory)
+        {
+        }
+
+        public new Recipe From => (Recipe) base.From;
+        public new RecipeCategory To => (RecipeCategory)base.To;
     }
 }

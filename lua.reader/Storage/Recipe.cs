@@ -12,13 +12,13 @@ namespace lua.reader
     {
 
         [JsonProperty("result")]
-        public string Result { get; set; }
+        private string _result { get; set; }
 
         [JsonProperty("result_count")]
-        public uint ResultCount { get; set; }
+        private uint _result_count { get; set; }
 
         [JsonProperty("category")]
-        public string RecipeCategory { get; set; }
+        private string _recipe_category { get; set; }
 
         [JsonProperty("subgroup")]
         public string Subgroup { get; set; }
@@ -28,6 +28,7 @@ namespace lua.reader
 
         [JsonProperty("enabled")]
         public bool Enabled { get; set; }
+
 
 
         public override void SetToken(JToken token)
@@ -45,7 +46,7 @@ namespace lua.reader
                 {
                     Populate(token, true);
                 }
-                
+
             }
 
             // outputs
@@ -61,7 +62,18 @@ namespace lua.reader
                 }
                 else
                 {
-                    Populate(Result, Math.Max(ResultCount, 1), false);
+                    Populate(_result, Math.Max(_result_count, 1), false);
+                }
+            }
+
+
+            // category
+            {
+                var category = ((JObject) _token).Property("category")?.Value.Value<string>();
+                if(category != null)
+                {
+                    var recipeCategory = Storage.RecipeCategories.First(x => x.Name == category);
+                    Storage.Link<RecipeRecipeCategoryEdge>(this, recipeCategory);
                 }
             }
 
@@ -100,31 +112,5 @@ namespace lua.reader
             link.Direction = input ? Direction.Input : Direction.Output;
             link.Amount = amount;
         }
-
-        //private List<RecipePart> GetIngredients()
-        //{
-        //    return _token["ingredients"].Select(RecipePart.Input).ToList();
-        //}
-
-        //private List<RecipePart> GetResults()
-        //{
-
-        //    var token = _token["results"];
-
-        //    List<RecipePart> list;
-
-        //    if (token != null && token.Any())
-        //    {
-        //        list = _token["results"].Select(RecipePart.Output).ToList();
-        //    }
-        //    else
-        //    {
-        //        list = new List<RecipePart> { RecipePart.Output(Result, Math.Max(ResultCount, 1)) };
-        //    }
-
-
-        //    return list;
-        //}
-
     }
 }

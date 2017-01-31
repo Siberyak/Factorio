@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace lua.reader
 {
-    [JsonObject("entity", MemberSerialization = MemberSerialization.OptIn)]
+    [JsonObject("Prototype/Entity", MemberSerialization = MemberSerialization.OptIn)]
     public abstract class Entity: TypedNamedBase
     {
 
@@ -67,37 +67,37 @@ namespace lua.reader
     //public partial class FlameThrowerExplosion : Explosion
     //{ }
 
-    [JsonObject("entity-with-health", MemberSerialization = MemberSerialization.OptIn)]
-    public abstract class EntityWithHealth : Entity
-    {
-        [JsonProperty("max_health")]
-        public double MaxHealth { get; set; }
+    //[JsonObject("entity-with-health", MemberSerialization = MemberSerialization.OptIn)]
+    //public abstract class EntityWithHealth : Entity
+    //{
+    //    [JsonProperty("max_health")]
+    //    public double MaxHealth { get; set; }
 
-        [JsonProperty("healing_per_tick")]
-        public double HealingPerTick { get; set; }
+    //    [JsonProperty("healing_per_tick")]
+    //    public double HealingPerTick { get; set; }
 
-        [JsonProperty("dying_explosion")]
-        public object DyingExplosion { get; set; }
+    //    [JsonProperty("dying_explosion")]
+    //    public object DyingExplosion { get; set; }
 
-        [JsonProperty("loot")]
-        public object Loot { get; set; }
+    //    [JsonProperty("loot")]
+    //    public object Loot { get; set; }
 
 
-        [JsonProperty("resistances")]
-        public object Resistances { get; set; }
+    //    [JsonProperty("resistances")]
+    //    public object Resistances { get; set; }
 
-        [JsonProperty("corpse")]
-        public object Corpse { get; set; }
-    }
+    //    [JsonProperty("corpse")]
+    //    public object Corpse { get; set; }
+    //}
 
     //[JsonObject("accumulator", MemberSerialization = MemberSerialization.OptIn)]
     //public partial class Accumulator : EntityWithHealth
     //{ }
 
 
-    [JsonObject("assembling-machine", MemberSerialization = MemberSerialization.OptIn)]
-    public partial class AssemblingMachine : EntityWithHealth
-    { }
+    //[JsonObject("assembling-machine", MemberSerialization = MemberSerialization.OptIn)]
+    //public partial class AssemblingMachine : EntityWithHealth
+    //{ }
 
     //[JsonObject("beacon", MemberSerialization = MemberSerialization.OptIn)]
     //public partial class Beacon : EntityWithHealth

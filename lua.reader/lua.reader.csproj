@@ -97,7 +97,11 @@
     <Compile Include="Language.cs" />
     <Compile Include="MemberInfoExtender.cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="Storage\ItemSubGroupEdge.cs" />
+    <Compile Include="Storage\ItemSubGroupGroupEdge.cs" />
     <Compile Include="Storage\RecipePartEdge.cs" />
+    <Compile Include="Storage\Technology.cs" />
+    <Compile Include="Storage\TechnologyPrerequisiteEdge.cs" />
     <Compile Include="Storage\TypedBase.cs" />
     <Compile Include="Storage\TypedNamedBase.cs" />
     <Compile Include="Storage\TypedNamedOrderedBase.cs" />
