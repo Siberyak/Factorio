@@ -127,9 +127,13 @@ namespace lua.reader
 
             var errors = storage.Edges.Select(x => x.From).Where(x => !(x is Recipe)).ToArray();
 
-//            var assemblingMachines = storage.Nodes<AssemblingMachine>().ToArray();
+            //            var assemblingMachines = storage.Nodes<AssemblingMachine>().ToArray();
 
             var tmp = storage.Nodes.OfType<TypedNamedBase>().Where(x => x.Name == "sulfur").ToArray();
+            var tmp2 = storage.Nodes.OfType<TypedNamedBase>().Where(x => x.Name.Contains("invar")).ToArray();
+
+            var recipeCategories = storage.Nodes.OfType<RecipeCategory>().ToArray();
+            var assemblingMachines = storage.Nodes.OfType<AssemblingMachine>().ToArray();
 
             return storage;
         }
@@ -149,6 +153,8 @@ namespace lua.reader
 
                     switch (Types[0])
                     {
+                        case JTokenType.Array:
+                            return $"object[]";
                         case JTokenType.Integer:
                             return "int";
                         case JTokenType.Float:
@@ -421,6 +427,17 @@ namespace lua.reader
 
                 var baseType = notExists ? hhh.BaseType : "";
 
+
+                if (baseType == typeof(TypedNamedBase).Name)
+                    propsByKey.RemoveAll(x => x.Name == "name");
+
+                if (baseType == typeof(TypedNamedBase).Name || baseType == typeof(TypedBase).Name)
+                    propsByKey.RemoveAll(x => x.Name == "type");
+
+                if(!notExists && propsByKey.Count == 0)
+                    continue;
+
+
                 var className = hhh.ClassName;
                 if (!string.IsNullOrEmpty(baseType))
                 {
@@ -436,11 +453,11 @@ namespace lua.reader
 
                 foreach (var propInfo in propsByKey)
                 {
-                    if (baseType == typeof (TypedNamedBase).Name && propInfo.Name == "name")
-                        continue;
+                    //if (baseType == typeof (TypedNamedBase).Name && propInfo.Name == "name")
+                    //    continue;
 
-                    if ((baseType == typeof (TypedNamedBase).Name || baseType == typeof (TypedBase).Name) && propInfo.Name == "type")
-                        continue;
+                    //if ((baseType == typeof (TypedNamedBase).Name || baseType == typeof (TypedBase).Name) && propInfo.Name == "type")
+                    //    continue;
 
                     var propertyName = NormalizeName(propInfo.Name);
 
@@ -448,7 +465,7 @@ namespace lua.reader
 
 
                     sb.AppendLine($"\t\t[JsonProperty(\"{propInfo.Name}\")]");
-                    sb.AppendLine($"\t\tpublic {propertyType} {propertyName}{{get;set;}}");
+                    sb.AppendLine($"\t\tpublic {propertyType} _{propertyName}{{get;set;}}");
                     sb.AppendLine();
                 }
 

@@ -80,6 +80,13 @@
     <Compile Include="Graph\IMutable.cs" />
     <Compile Include="Storage\Base.cs" />
     <Compile Include="DataCache.cs" />
+    <Compile Include="Storage\Crafters\Furnace.cs" />
+    <Compile Include="Storage\Crafters\AssemblingMachine.cs" />
+    <Compile Include="Storage\Crafters\Player.cs" />
+    <Compile Include="Storage\Crafters\RocketSilo.cs" />
+    <Compile Include="Storage\RecipeParts\Blueprint.cs" />
+    <Compile Include="Storage\RecipeParts\BlueprintBook.cs" />
+    <Compile Include="Storage\RecipeParts\DeconstructionItem.cs" />
     <Compile Include="Storage\Direction.cs" />
     <Compile Include="ErrorLogging.cs" />
     <Compile Include="Extender.cs" />
@@ -91,6 +98,9 @@
     </Compile>
     <Compile Include="Storage\EdgeBase.cs" />
     <Compile Include="Storage\Entity.cs" />
+    <Compile Include="Storage\RecipeParts\Fluid.cs" />
+    <Compile Include="Storage\Crafters\ICrafter.cs" />
+    <Compile Include="Storage\RecipeParts\IRecipePart.cs" />
     <Compile Include="Storage\Item.cs" />
     <Compile Include="Storage\ItemGroup.cs" />
     <Compile Include="Storage\ItemSubGroup.cs" />
@@ -99,9 +109,15 @@
     <Compile Include="Mod.cs" />
     <Compile Include="Storage\ItemSubGroupEdge.cs" />
     <Compile Include="Storage\ItemSubGroupGroupEdge.cs" />
+    <Compile Include="Storage\RecipeParts\Item.cs" />
+    <Compile Include="Storage\RecipeParts\ItemWithEntityData.cs" />
+    <Compile Include="Storage\RecipeParts\RailPlanner.cs" />
     <Compile Include="Storage\RecipePartEdge.cs" />
+    <Compile Include="Storage\RecipeParts\RepairTool.cs" />
     <Compile Include="Storage\Technology.cs" />
     <Compile Include="Storage\TechnologyPrerequisiteEdge.cs" />
+    <Compile Include="Storage\TechnologyUnlockRecipeEdge.cs" />
+    <Compile Include="Storage\RecipeParts\Tool.cs" />
     <Compile Include="Storage\TypedBase.cs" />
     <Compile Include="Storage\TypedNamedBase.cs" />
     <Compile Include="Storage\TypedNamedOrderedBase.cs" />

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.SqlServer.Server;
@@ -36,10 +37,16 @@ namespace lua.reader
                 var recipeProperty = effect.Property("recipe");
                 var rec = recipeProperty?.Value.Value<string>();
 
+                if(string.IsNullOrWhiteSpace(rec))
+                    continue;
+
                 var typeProperty = effect.Property("type");
                 var type = typeProperty?.Value.Value<string>();
+                
+                if(type != "unlock-recipe")
+                    throw new NotImplementedException();
 
-                //Storage.Link<TechnologyPrerequisiteEdge>(this, Storage.Nodes.OfType<Technology>().First(x => x.Name == prerequisite));
+                Storage.Link<TechnologyUnlockRecipeEdge>(this, Storage.Nodes.OfType<Recipe>().First(x => x.Name == rec));
             }
 
         }

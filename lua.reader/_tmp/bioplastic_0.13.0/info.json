@@ -1,0 +1,11 @@
+{
+	"name": "bioplastic",
+	"version": "0.13.0",
+	"factorio_version": "0.13",
+	"title": "Bio Plastic Mod",
+	"author": "anoyomouse",
+	"contact": "-none-",
+	"homepage": "",
+	"description": "Allow Bio Plastic Processing",
+	"dependencies": ["base >= 0.13.0", "bobplates >= 0.13.0" ]
+}

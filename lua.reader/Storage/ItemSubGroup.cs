@@ -5,6 +5,9 @@ namespace lua.reader
     [JsonObject("item-subgroup", MemberSerialization = MemberSerialization.OptIn)]
     public partial class ItemSubGroup : TypedNamedBase
     {
+        [JsonProperty("order")]
+        public string Order { get; set; }
+
         [JsonProperty("group")]
         public string Group { get; set; }
 

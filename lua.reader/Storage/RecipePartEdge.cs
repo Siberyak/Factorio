@@ -2,7 +2,7 @@ namespace lua.reader
 {
     public class RecipePartEdge : EdgeBase
     {
-        public RecipePartEdge(Storage storage, Recipe recipe, Item item) : base(storage, recipe, item)
+        public RecipePartEdge(Storage storage, Recipe recipe, IRecipePart item) : base(storage, recipe, (Base)item)
         {
         }
 

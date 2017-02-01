@@ -7,43 +7,43 @@ namespace lua.reader
     {
 
         [JsonProperty("flags")]
-        public object Flags { get; set; }
+        public object _Flags { get; set; }
 
         [JsonProperty("icon")]
-        public object Icon { get; set; }
+        public object _Icon { get; set; }
 
         [JsonProperty("collision_box")]
-        public object CollisionBox { get; set; }
+        public object _CollisionBox { get; set; }
 
         [JsonProperty("selection_box")]
-        public object SelectionBox { get; set; }
+        public object _SelectionBox { get; set; }
 
         [JsonProperty("drawing_box")]
-        public object DrawingBox { get; set; }
+        public object _DrawingBox { get; set; }
 
         [JsonProperty("sticker_box")]
-        public object StickerBox { get; set; }
+        public object _StickerBox { get; set; }
 
         [JsonProperty("weight")]
-        public double Weight { get; set; }
+        public double _Weight { get; set; }
 
         [JsonProperty("minable")]
-        public object Minable { get; set; }
+        public object _Minable { get; set; }
 
         [JsonProperty("emissions_per_tick")]
-        public object EmissionsPerTick { get; set; }
+        public object _EmissionsPerTick { get; set; }
 
         [JsonProperty("fast_replaceable_group")]
-        public string FastReplaceableGroup { get; set; }
+        public string _FastReplaceableGroup { get; set; }
 
         [JsonProperty("tile_width")]
-        public uint TileWidth { get; set; }
+        public uint _TileWidth { get; set; }
 
         [JsonProperty("tile_height")]
-        public uint TileHeight { get; set; }
+        public uint _TileHeight { get; set; }
 
         [JsonProperty("autoplace")]
-        public object Autoplace { get; set; }
+        public object _Autoplace { get; set; }
 
     }
 

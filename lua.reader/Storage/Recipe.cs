@@ -12,22 +12,22 @@ namespace lua.reader
     {
 
         [JsonProperty("result")]
-        private string _result { get; set; }
+        private string _Result { get; set; }
 
         [JsonProperty("result_count")]
-        private uint _result_count { get; set; }
+        private uint _ResultCount { get; set; }
 
         [JsonProperty("category")]
-        private string _recipe_category { get; set; }
+        private string _RecipeCategory { get; set; }
 
         [JsonProperty("subgroup")]
-        public string Subgroup { get; set; }
+        public string _Subgroup { get; set; }
 
         [JsonProperty("energy_required")]
-        public uint EnergyRequired { get; set; }
+        public uint _EnergyRequired { get; set; }
 
         [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
+        public bool _Enabled { get; set; }
 
 
 
@@ -42,8 +42,11 @@ namespace lua.reader
 
             // inputs
             {
-                foreach (var token in _token["ingredients"])
+                foreach (var token in _Ingredients.Cast<JToken>())
                 {
+                //}
+                //foreach (var token in _token["ingredients"])
+                //{
                     Populate(token, true);
                 }
 
@@ -51,18 +54,18 @@ namespace lua.reader
 
             // outputs
             {
-                var collectionToken = _token["results"];
-
-                if (collectionToken != null && collectionToken.Any())
+                
+                var collectionToken = (_Results?.Cast<JToken>() ?? Enumerable.Empty<JToken>()).ToArray();
+                if (collectionToken.Any())
                 {
-                    foreach (var token in _token["ingredients"])
+                    foreach (var token in collectionToken)
                     {
                         Populate(token, false);
                     }
                 }
                 else
                 {
-                    Populate(_result, Math.Max(_result_count, 1), false);
+                    Populate(_Result, Math.Max(_ResultCount, 1), false);
                 }
             }
 
@@ -106,7 +109,12 @@ namespace lua.reader
 
         private void Populate(string name, object amount, bool input)
         {
-            var item = Storage.FindNode<Item>(x => x.Name == name);
+            var item = Storage.FindNode<IRecipePart>(x => x.Name == name);
+
+            if (item == null)
+            {
+                var arr = Storage.Nodes.OfType<TypedNamedBase>().Where(x => x.Name == name).ToArray();
+            }
 
             var link = Storage.Link<RecipePartEdge>(this, item);
             link.Direction = input ? Direction.Input : Direction.Output;

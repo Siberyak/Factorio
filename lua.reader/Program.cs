@@ -17,6 +17,8 @@ namespace lua.reader
         private static void Main(string[] args)
         {
 
+            //Load();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
